@@ -94,7 +94,8 @@ namespace linq2twitter_demo
                     context.UploadMediaAsync(File.ReadAllBytes(@"c:\path\to\image2.png")),
                     context.UploadMediaAsync(File.ReadAllBytes(@"c:\path\to\image3.jpg"))
                 };
-
+            await Task.WhenAll(imageUploadTasks);
+            
             var mediaIds =
                 (from tsk in imageUploadTasks
                  select tsk.Result.MediaID)
